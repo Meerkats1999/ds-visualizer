@@ -16,7 +16,7 @@ const Home: FC = () => {
 
     const dsStateHandler = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         const currentDataStructure = (event.target as HTMLInputElement).textContent?.toLowerCase();
-        console.log(currentDataStructure);
+        // console.log(currentDataStructure);
         setdsState({
             dataStructure: currentDataStructure ? currentDataStructure : ""
         })
