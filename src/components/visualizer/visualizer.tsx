@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Auxillary from '../../components/hoc/Auxillary';
-import Stack from '../../components/dataStructure/stack/stack';
-import Queue from '../../components/dataStructure/queue/queue';
-import LinkedList from '../../components/dataStructure/linkedList/linkedList';
+import Stack from '../../containers/dataStructures/stack/stack';
+import Queue from '../../containers/dataStructures/queue/queue';
+import LinkedList from '../../containers/dataStructures/linkedList/linkedList';
 
 const Visualizer = (props: any) => {
 

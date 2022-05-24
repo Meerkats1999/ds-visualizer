@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import Auxillary from "../../components/hoc/Auxillary";
 
 import NavBar from '../../components/navbar/navbar'
-import Visualizer from "../visualizer/visualizer";
+import Visualizer from '../../components/visualizer/visualizer';
 
 interface dataStructure {
     dataStructure: string

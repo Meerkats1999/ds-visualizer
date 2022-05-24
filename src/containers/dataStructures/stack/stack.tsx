@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import Auxillary from '../../hoc/Auxillary';
-import StackBuildControls from './stackBuildControls/stackBuildControls';
+import Auxillary from '../../../components/hoc/Auxillary';
+import StackBuildControls from '../../../components/buildControls/stackBuildControls/stackBuildControls';
 
 const Stack = () => {
 
@@ -9,6 +9,7 @@ const Stack = () => {
         stack: [],
         top: null,
         isEmpty: true,
+        stackSize: 0
     })
 
     const [pushState, setPushState] = useState({
@@ -25,18 +26,29 @@ const Stack = () => {
         })
     }
 
-    const handlePush = (props: any) => {
-        if (pushState.lastPushElement) {
+    const stackSizeHandler = (stackSizeSet: number) => {
+        console.log(stackSizeSet);
+        setStackState({
+            ...stackState,
+            stackSize: stackSizeSet
+        })
+    }
+
+    const handlePush = () => {
+        if (pushState.lastPushElement && !(stackState.stack.length === stackState.stackSize)) {
+            console.log(stackState.stack.length + " " + stackState.stackSize);
             const pushElement = pushState.lastPushElement;
             let tempStack = JSON.parse(JSON.stringify(stackState.stack)); //clone array without reference
             tempStack.push(pushElement);
             setStackState({
+                ...stackState,
                 stack: tempStack,
                 top: tempStack[tempStack.length - 1],
                 isEmpty: false,
             })
+        } else if (stackState.stack.length >= stackState.stackSize) {
+            alert("Stack Full");
         }
-        // stackModule = displayStack()
     }
 
     const handlePop = () => {
@@ -49,11 +61,11 @@ const Stack = () => {
             const top = tempStack[tempStack.length - 1];
         }
         setStackState({
+            ...stackState,
             stack: tempStack,
             top: top,
             isEmpty: isEmpty
         })
-        // stackModule = displayStack()
     }
 
     const handlePeek = () => {
@@ -63,10 +75,11 @@ const Stack = () => {
     return (
         <Auxillary>
             <StackBuildControls
+                stackSizeHandler={stackSizeHandler}
                 pushHandler={handlePush}
                 pushElementHandler={pushElementHandler}
                 popHandler={handlePop} />
-            <ul>
+            <ul className='flex flex-col-reverse'>
                 {stackModule}
             </ul>
         </Auxillary>
