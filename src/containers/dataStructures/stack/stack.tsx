@@ -35,7 +35,7 @@ const Stack = () => {
     }
 
     const handlePush = () => {
-        if (pushState.lastPushElement && !(stackState.stack.length === stackState.stackSize)) {
+        if (pushState.lastPushElement && !(stackState.stack.length >= stackState.stackSize)) {
             console.log(stackState.stack.length + " " + stackState.stackSize);
             const pushElement = pushState.lastPushElement;
             let tempStack = JSON.parse(JSON.stringify(stackState.stack)); //clone array without reference
@@ -66,10 +66,6 @@ const Stack = () => {
             top: top,
             isEmpty: isEmpty
         })
-    }
-
-    const handlePeek = () => {
-        console.log(stackState.top);
     }
 
     return (
