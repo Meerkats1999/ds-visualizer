@@ -33,12 +33,29 @@ const LinkedList = () => {
         });
     }
 
+    const insertAt = (addPosValue: number, addIndex: number) => {
+        linkedList = linkedListState.linkedList
+        linkedList.insertAt(addPosValue, addIndex);
+        setLinkedListState({
+            linkedList: linkedList
+        })
+    }
+
+    const removeFrom = (removeIndex: number) => {
+        linkedList = linkedListState.linkedList;
+        linkedList.removeFrom(removeIndex);
+        setLinkedListState({
+            linkedList: linkedList
+        })
+    }
 
     return (
         <Auxillary>
             <p>LinkedList</p>
             <LinkedListBuildControls
-                addValueSubmitHandler={addToHead} />
+                addValueSubmitHandler={addToHead}
+                addPosValueSubmitHandler={insertAt}
+                removeHandler={removeFrom} />
             <ul>
                 {listItems}
             </ul>
