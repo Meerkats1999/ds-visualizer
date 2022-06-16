@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import LinkedListBuildControls from '../../../components/buildControls/linkedListBuildControls/linkedListBuildControls';
-import LinkedListBuilder from '../../../components/buildControls/linkedListBuildControls/linkedListBuilder';
+import LinkedListBuildControls from './linkedListBuildControls/linkedListBuildControls';
+import LinkedListBuilder from '../../../data-structures/linkedList/linkedListBuilder';
 import Auxillary from '../../../components/hoc/Auxillary';
 
 const LinkedList = () => {

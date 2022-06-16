@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Auxillary from '../../../components/hoc/Auxillary';
-import StackBuildControls from '../../../components/buildControls/stackBuildControls/stackBuildControls';
+import StackBuildControls from './stackBuildControls/stackBuildControls';
 
 const Stack = () => {
 

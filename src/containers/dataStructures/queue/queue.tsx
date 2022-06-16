@@ -1,82 +1,63 @@
 import React, { useState } from 'react';
 
-import QueueBuildControls from '../../../components/buildControls/queueBuildControls/queueBuildControls';
+import QueueBuilder from '../../../data-structures/queue/queueBuilder';
+import QueueBuildControls from './queueBuildControls/queueBuildControls';
 import Auxillary from '../../../components/hoc/Auxillary';
 
 const Queue = () => {
 
+    let queue = new QueueBuilder();
+
     const [queueState, setQueueState] = useState({
-        queue: [],
-        top: null,
-        isEmpty: true,
-        queueSize: 0
+        queue: queue
     })
 
-    const [enQueueState, setEnqueueState] = useState({
-        lastEnqueueElement: null
+    let queueList = queueState.queue.queue.map((item: any, index: any) => {
+        return <li key={index}>{item}</li>
     })
 
-    let queueModule = queueState.queue.map((queueItem, index) => {
-        return <li key={index}>{queueItem}</li>
-    })
-
-
-    const queueSizeHandler = (queueSizeSet: number) => {
+    const queueSizeHandler = (queueSizeValue: number) => {
+        queue = queueState.queue;
+        queue.setSize(queueSizeValue);
         setQueueState({
-            ...queueState,
-            queueSize: queueSizeSet
+            queue
         })
     }
 
-    const enQueueElementHandler = (enQueueValue: any) => {
-        console.log(enQueueValue)
-        setEnqueueState({
-            lastEnqueueElement: enQueueValue
-        })
-    }
-
-    const enQueueHandler = () => {
-        if (enQueueState.lastEnqueueElement && !(queueState.queue.length >= queueState.queueSize)) {
-            const enQueueElement = enQueueState.lastEnqueueElement;
-            let tempQueue = JSON.parse(JSON.stringify(queueState.queue)); //clone array without reference
-            tempQueue.push(enQueueElement);
+    const enQueueHandler = (enQueueValue: number) => {
+        if (enQueueValue && !(queueState.queue.queue.length >= queueState.queue.queueSize)) {
+            const queue = queueState.queue;
+            queue.enQueue(enQueueValue);
             setQueueState({
-                ...queueState,
-                queue: tempQueue,
-                top: tempQueue[tempQueue.length - 1],
-                isEmpty: false,
+                queue: queue
             })
-        } else if (queueState.queue.length >= queueState.queueSize) {
+        }
+        else if (queueState.queue.queue.length >= queueState.queue.queueSize) {
             alert("Queue Full");
         }
     }
 
     const deQueueHandler = () => {
-        let tempQueue = JSON.parse(JSON.stringify(queueState.queue)); //clone array without reference
-        tempQueue.shift();
-        const isEmpty = true;
-        const top = null;
-        if (tempQueue.length > 0) {
-            const isEmpty = false;
-            const top = tempQueue[tempQueue.length - 1];
+        const queue = queueState.queue;
+        if (queue.isEmpty) {
+            alert("Queue is Empty");
+        } else {
+            queue.deQueue();
+            setQueueState({
+                queue: queue
+            })
         }
-        setQueueState({
-            ...queueState,
-            queue: tempQueue,
-            top: top,
-            isEmpty: isEmpty
-        })
     }
 
     return (
         <Auxillary>
             <QueueBuildControls
+                queueSize={queueState.queue.queueSize}
                 queueSizeHandler={queueSizeHandler}
-                enQueueElementHandler={enQueueElementHandler}
                 enQueueHandler={enQueueHandler}
                 deQueueHandler={deQueueHandler} />
-            <ul className='flex flex-col-reverse'>
-                {queueModule}
+            <ul className='flex flex-col'>
+                {queueList}
             </ul>
         </Auxillary>
     );
