@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import Auxillary from '../../../../components/hoc/Auxillary';
 
-const stackbuildControls = (props: any) => {
+const StackbuildControls = (props: any) => {
 
-    let pushValue = 0;
+    const [state, setState] = useState({
+        pushValue: " "
+    })
+
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        pushValue = parseInt(event.target.value);
-        props.pushElementHandler(pushValue)
+        let pushValue = event.target.value;
+        setState({
+            pushValue: pushValue
+        })
     }
 
     let stackSizeValue = 0;
@@ -19,7 +24,7 @@ const stackbuildControls = (props: any) => {
     return (
         <Auxillary>
             <div className='flex'>
-                <form onSubmit={props.pushHandler}>
+                <form onSubmit={() => props.pushHandler(parseInt(state.pushValue))}>
                     <label>
                         Enter Stack Size:
                         <input type="number" value={props.stackSize} onChange={(event) => stackSizeHandler(event)} />
@@ -39,4 +44,4 @@ const stackbuildControls = (props: any) => {
     );
 }
 
-export default stackbuildControls;
+export default StackbuildControls;

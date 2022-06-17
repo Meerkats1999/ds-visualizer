@@ -1,82 +1,62 @@
 import React, { useEffect, useState } from 'react';
 
 import Auxillary from '../../../components/hoc/Auxillary';
+import StackBuilder from '../../../data-structures/stack/stackBuilder';
 import StackBuildControls from './stackBuildControls/stackBuildControls';
 
 const Stack = () => {
 
+    let stack = new StackBuilder();
+
     const [stackState, setStackState] = useState({
-        stack: [],
-        top: null,
-        isEmpty: true,
-        stackSize: 0
+        stack: stack
     })
 
-    const [pushState, setPushState] = useState({
-        lastPushElement: null
-    })
-
-    let stackModule = stackState.stack.map((stackItem, index) => {
+    let stackList = stackState.stack.stack.map((stackItem: any, index: any) => {
         return <li key={index}>{stackItem}</li>
     });
 
-    const pushElementHandler = (pushValue: any) => {
-        setPushState({
-            lastPushElement: pushValue
-        })
-    }
-
     const stackSizeHandler = (stackSizeSet: number) => {
-        console.log(stackSizeSet);
+        stack = stackState.stack;
+        stack.setSize(stackSizeSet);
         setStackState({
-            ...stackState,
-            stackSize: stackSizeSet
+            stack: stack
         })
     }
 
-    const handlePush = () => {
-        if (pushState.lastPushElement && !(stackState.stack.length >= stackState.stackSize)) {
-            console.log(stackState.stack.length + " " + stackState.stackSize);
-            const pushElement = pushState.lastPushElement;
-            let tempStack = JSON.parse(JSON.stringify(stackState.stack)); //clone array without reference
-            tempStack.push(pushElement);
+    const handlePush = (pushValue: number) => {
+        if (!(stackState.stack.stack.length >= stackState.stack.stackSize)) {
+            stack = stackState.stack;
+            stack.push(pushValue);
             setStackState({
-                ...stackState,
-                stack: tempStack,
-                top: tempStack[tempStack.length - 1],
-                isEmpty: false,
+                stack: stack
             })
-        } else if (stackState.stack.length >= stackState.stackSize) {
+        } else if (stackState.stack.stack.length >= stackState.stack.stackSize) {
             alert("Stack Full");
         }
     }
 
     const handlePop = () => {
-        let tempStack = JSON.parse(JSON.stringify(stackState.stack)); //clone array without reference
-        tempStack.pop();
-        const isEmpty = true;
-        const top = null;
-        if (tempStack.length > 0) {
-            const isEmpty = false;
-            const top = tempStack[tempStack.length - 1];
+        const stack = stackState.stack;
+        if (stack.isEmpty) {
+            alert("Stack is Empty");
+        } else {
+            stack.pop()
+            setStackState({
+                stack: stack
+            })
         }
-        setStackState({
-            ...stackState,
-            stack: tempStack,
-            top: top,
-            isEmpty: isEmpty
-        })
     }
 
     return (
         <Auxillary>
             <StackBuildControls
+                stackSize={stackState.stack.stackSize}
                 stackSizeHandler={stackSizeHandler}
                 pushHandler={handlePush}
-                pushElementHandler={pushElementHandler}
                 popHandler={handlePop} />
             <ul className='flex flex-col-reverse'>
-                {stackModule}
+                {stackList}
             </ul>
         </Auxillary>
     );
