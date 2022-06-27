@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+
+import arrowImage from '../../../assets/images/arrow.svg';
 import LinkedListBuildControls from './linkedListBuildControls/linkedListBuildControls';
 import LinkedListBuilder from '../../../data-structures/linkedList/linkedListBuilder';
 import Auxillary from '../../../components/hoc/Auxillary';
@@ -15,13 +17,30 @@ const LinkedList = () => {
 
     let items = [];
     while (current !== null) {
-        items.push(current.element);
+        if (current.next !== null) {
+            items.push([current.element, current.next.element]);
+        } else {
+            items.push([current.element, 'null']);
+        }
         current = current.next;
         console.log(items);
     }
 
+    const arrowLogo = <img className='justify-center w-full self-center'
+        src={arrowImage} />
+
     let listItems = items.map((item, index) => {
-        return <li key={index}>{item}</li>
+        let arrow = null;
+        if (item[1] !== 'null')
+            arrow = <img className='justify-center w-full self-center'
+                src={arrowImage} />
+        return <li className='flex' key={index}>
+            <div className='flex-shrink-0 rounded-full text-center text-sm h-20 w-20 bg-red-500'>
+                {"Value: " + item[0]}<br />
+                {"Next: " + item[1]}
+            </div>
+            {arrow}
+        </li>
     });
 
 
@@ -56,7 +75,7 @@ const LinkedList = () => {
                 addValueSubmitHandler={addToHead}
                 addPosValueSubmitHandler={insertAt}
                 removeHandler={removeFrom} />
-            <ul>
+            <ul className='flex'>
                 {listItems}
             </ul>
         </Auxillary>
