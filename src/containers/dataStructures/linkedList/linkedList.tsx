@@ -13,14 +13,15 @@ const LinkedList = () => {
     });
 
     let current = linkedListState.linkedList.head;
-    console.log(current);
+    // console.log(current);
 
     let items = [];
     while (current !== null) {
+        // console.log(current.color);
         if (current.next !== null) {
-            items.push([current.element, current.next.element]);
+            items.push([current.element, current.color, current.next.element]);
         } else {
-            items.push([current.element, 'null']);
+            items.push([current.element, current.color, 'null']);
         }
         current = current.next;
         console.log(items);
@@ -31,30 +32,51 @@ const LinkedList = () => {
 
     let listItems = items.map((item, index) => {
         let arrow = null;
-        if (item[1] !== 'null')
+        if (item[2] !== 'null')
             arrow = <img className='justify-center w-full self-center'
                 src={arrowImage} />
+
+        let color = null;
+        switch (item[1]) {
+            case "red": {
+                color = 'bg-red-500';
+                break;
+            }
+            case "blue": {
+                color = 'bg-blue-500';
+                break;
+            }
+            case "purple": {
+                color = 'bg-purple-500';
+                break;
+            }
+            default: {
+                color = 'bg-red-500';
+                break;
+            }
+        }
+
         return <li className='flex' key={index}>
-            <div className='flex-shrink-0 rounded-full text-center text-sm h-20 w-20 bg-red-500'>
+            <div className={'flex-shrink-0 rounded-full text-center text-sm h-20 w-20 ' + color}>
                 {"Value: " + item[0]}<br />
-                {"Next: " + item[1]}
+                {"Next: " + item[2]}
             </div>
             {arrow}
         </li>
     });
 
 
-    const addToHead = (addValue: number) => {
+    const addToHead = (addValue: number, nodeColor: string) => {
         linkedList = linkedListState.linkedList
-        linkedList.add(addValue);
+        linkedList.add(addValue, nodeColor);
         setLinkedListState({
             linkedList: linkedList
         });
     }
 
-    const insertAt = (addPosValue: number, addIndex: number) => {
+    const insertAt = (addPosValue: number, addIndex: number, nodeColor: string) => {
         linkedList = linkedListState.linkedList
-        linkedList.insertAt(addPosValue, addIndex);
+        linkedList.insertAt(addPosValue, addIndex, nodeColor);
         setLinkedListState({
             linkedList: linkedList
         })

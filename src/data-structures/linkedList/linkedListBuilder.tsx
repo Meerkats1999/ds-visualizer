@@ -9,8 +9,8 @@ class LinkedListBuilder {
         this.size = 0;
     }
 
-    add(element: any) {
-        const node = new LinkedListNode(element);
+    add(element: any, nodeColor: any) {
+        const node = new LinkedListNode(element, nodeColor);
         let current;
 
         if (this.head == null)
@@ -27,11 +27,11 @@ class LinkedListBuilder {
         this.size++;
     }
 
-    insertAt(element: any, index: any) {
+    insertAt(element: any, index: any, nodeColor: any) {
         if (index < 0 || index > this.size)
             return console.log("Please enter a valid index.");
         else {
-            const node = new LinkedListNode(element);
+            const node = new LinkedListNode(element, nodeColor);
             let curr, prev;
 
             curr = this.head;
