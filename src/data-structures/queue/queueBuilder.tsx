@@ -16,8 +16,8 @@ class Queue {
         this.queueSize = value;
     }
 
-    enQueue(value: number) {
-        this.queue.push(value);
+    enQueue(value: number, elementColor: string) {
+        this.queue.push([value, elementColor]);
         this.isEmpty = false;
         this.top = this.queue[this.queue.length - 1];
     }

@@ -63,7 +63,7 @@ const BuildControls = (props: any) => {
                 <input className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
                     type="submit" value="Push" />
 
-                <div className="group">
+                <label className="group">
                     <div className="dropdown group-hover:text-white inline-block relative">
                         <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" type='button'>
                             <span className="mr-1">Select Data Structure</span>
@@ -89,7 +89,7 @@ const BuildControls = (props: any) => {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </label>
 
 
             </form>

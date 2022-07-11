@@ -16,8 +16,8 @@ class Stack {
         this.stackSize = stackSize;
     }
 
-    push(pushElement: number) {
-        this.stack.push(pushElement);
+    push(pushElement: number, elementColor: string) {
+        this.stack.push([pushElement, elementColor]);
         this.isEmpty = false;
         this.top = this.stack[this.stack.length - 1];
     }

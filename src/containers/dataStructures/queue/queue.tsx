@@ -13,7 +13,31 @@ const Queue = () => {
     })
 
     let queueList = queueState.queue.queue.map((item: any, index: any) => {
-        return <li key={index}>{item}</li>
+
+        console.log(item);
+
+
+        let color = null;
+        switch (item[1]) {
+            case "red": {
+                color = 'bg-red-500';
+                break;
+            }
+            case "blue": {
+                color = 'bg-blue-500';
+                break;
+            }
+            case "purple": {
+                color = 'bg-purple-500';
+                break;
+            }
+            default: {
+                color = 'bg-red-500';
+                break;
+            }
+        }
+
+        return <li className={'text-center h-10 w-20 ' + color} key={index}>{item[0]}</li>
     })
 
     const queueSizeHandler = (queueSizeValue: number) => {
@@ -24,10 +48,10 @@ const Queue = () => {
         })
     }
 
-    const enQueueHandler = (enQueueValue: number) => {
+    const enQueueHandler = (enQueueValue: number, elementColor: string) => {
         if (enQueueValue && !(queueState.queue.queue.length >= queueState.queue.queueSize)) {
             const queue = queueState.queue;
-            queue.enQueue(enQueueValue);
+            queue.enQueue(enQueueValue, elementColor);
             setQueueState({
                 queue: queue
             })

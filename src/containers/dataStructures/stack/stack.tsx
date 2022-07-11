@@ -13,7 +13,31 @@ const Stack = () => {
     })
 
     let stackList = stackState.stack.stack.map((stackItem: any, index: any) => {
-        return <li key={index}>{stackItem}</li>
+
+        console.log(stackItem);
+
+
+        let color = null;
+        switch (stackItem[1]) {
+            case "red": {
+                color = 'bg-red-500';
+                break;
+            }
+            case "blue": {
+                color = 'bg-blue-500';
+                break;
+            }
+            case "purple": {
+                color = 'bg-purple-500';
+                break;
+            }
+            default: {
+                color = 'bg-red-500';
+                break;
+            }
+        }
+
+        return <li className={'text-center h-10 w-20 ' + color} key={index}>{stackItem[0]}</li>
     });
 
     const stackSizeHandler = (stackSizeSet: number) => {
@@ -24,10 +48,10 @@ const Stack = () => {
         })
     }
 
-    const handlePush = (pushValue: number) => {
+    const handlePush = (pushValue: number, itemColor: string) => {
         if (!(stackState.stack.stack.length >= stackState.stack.stackSize)) {
             stack = stackState.stack;
-            stack.push(pushValue);
+            stack.push(pushValue, itemColor);
             setStackState({
                 stack: stack
             })
