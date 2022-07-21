@@ -37,7 +37,7 @@ const Queue = () => {
             }
         }
 
-        return <li className={'text-center h-10 w-20 ' + color} key={index}>{item[0]}</li>
+        return <li className={'text-center border-solid hover:border-dashed border-2 border-gray-800 h-10 w-20 ' + color} key={index}>{item[0]}</li>
     })
 
     const queueSizeHandler = (queueSizeValue: number) => {
@@ -80,9 +80,13 @@ const Queue = () => {
                 queueSizeHandler={queueSizeHandler}
                 enQueueHandler={enQueueHandler}
                 deQueueHandler={deQueueHandler} />
-            <ul className='flex flex-col'>
-                {queueList}
-            </ul>
+            <br />
+            <div className='mx-20 my-10'>
+                <span className='font-mono text-4xl text-white font-bold'>Queue</span>
+                <ul className='flex flex-col mt-5'>
+                    {queueList}
+                </ul>
+            </div>
         </Auxillary>
     );
 }

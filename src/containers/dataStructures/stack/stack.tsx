@@ -37,7 +37,7 @@ const Stack = () => {
             }
         }
 
-        return <li className={'text-center h-10 w-20 ' + color} key={index}>{stackItem[0]}</li>
+        return <li className={'text-center border-solid hover:border-dashed border-2 border-gray-800 h-10 w-20 ' + color} key={index}>{stackItem[0]}</li>
     });
 
     const stackSizeHandler = (stackSizeSet: number) => {
@@ -79,9 +79,13 @@ const Stack = () => {
                 stackSizeHandler={stackSizeHandler}
                 pushHandler={handlePush}
                 popHandler={handlePop} />
-            <ul className='flex flex-col-reverse'>
-                {stackList}
-            </ul>
+            <br />
+            <div className='mx-20 my-10'>
+                <span className='font-mono text-4xl text-white font-bold'>Stack</span>
+                <ul className='flex flex-col-reverse mt-5'>
+                    {stackList}
+                </ul>
+            </div>
         </Auxillary>
     );
 }

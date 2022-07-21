@@ -20,12 +20,11 @@ const Visualizer = (props: any) => {
             dataStructure = <LinkedList />
             break;
         default:
-            dataStructure = <p>World</p>
+            dataStructure = <span className='font-mono text-4xl text-white font-bold'>Select a Data Structure</span>
     }
 
     return (
         <Auxillary>
-            <div>Visualizer</div>
             {dataStructure}
         </Auxillary>
     );

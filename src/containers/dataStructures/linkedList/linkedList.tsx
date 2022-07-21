@@ -92,14 +92,18 @@ const LinkedList = () => {
 
     return (
         <Auxillary>
-            <p>LinkedList</p>
             <LinkedListBuildControls
                 addValueSubmitHandler={addToHead}
                 addPosValueSubmitHandler={insertAt}
                 removeHandler={removeFrom} />
-            <ul className='flex'>
-                {listItems}
-            </ul>
+            <br />
+            <div className='mx-20 my-10'>
+                <span className='font-mono text-4xl text-white font-bold'>Singly Linked List</span>
+                <ul className='flex mt-5'>
+                    {listItems}
+                </ul>
+            </div>
+
         </Auxillary>
     );
 }

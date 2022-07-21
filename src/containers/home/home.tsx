@@ -25,7 +25,10 @@ const Home: FC = () => {
     return (
         <Auxillary>
             <NavBar selector={dsStateHandler}></NavBar>
-            <Visualizer dataStructure={dsState.dataStructure}></Visualizer>
+            <div className='mx-20 my-10'>
+                <Visualizer dataStructure={dsState.dataStructure}></Visualizer>
+            </div>
+
         </Auxillary>
     );
 }
