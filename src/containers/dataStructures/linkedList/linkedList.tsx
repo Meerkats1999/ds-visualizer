@@ -57,7 +57,7 @@ const LinkedList = () => {
         }
 
         return <li className='flex' key={index}>
-            <div className={'flex-shrink-0 rounded-full text-center text-sm h-20 w-20 ' + color}>
+            <div className={'flex-shrink-0 border-solid hover:border-dashed border-2 border-gray-800 shadow-xl rounded-full text-center text-sm h-20 w-20 ' + color}>
                 {"Value: " + item[0]}<br />
                 {"Next: " + item[2]}
             </div>

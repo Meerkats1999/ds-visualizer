@@ -3,7 +3,7 @@ import Home from './containers/home/home';
 
 function App() {
   return (
-    <div className="bg-gray-700 h-screen">
+    <div className="bg-gradient-to-b from-gray-700 to-gray-500 h-screen">
       <Home />
     </div>
   );

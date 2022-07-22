@@ -38,18 +38,18 @@ const StackbuildControls = (props: any) => {
                 <form onSubmit={() => props.pushHandler(parseInt(state.pushValue), state.color)}>
                     <label >
                         <span className='text-white font-bold'>Stack Size</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={props.stackSize} onChange={(event) => stackSizeHandler(event)} />
+                        <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={props.stackSize} onChange={(event) => stackSizeHandler(event)} />
                     </label>
                     <br />
                     <br />
                     <label >
                         <span className='text-white font-bold'>Value</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={props.lastPushElement} onChange={(event) => onChangeHandler(event)} />
+                        <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={props.lastPushElement} onChange={(event) => onChangeHandler(event)} />
                     </label>
 
                     <label className="group mx-5">
                         <div className="dropdown group-hover:text-white inline-block relative">
-                            <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" type='button'>
+                            <button className="bg-gray-300 text-gray-700 shadow-xl font-semibold py-2 px-4 rounded inline-flex items-center" type='button'>
                                 <span className="mr-1">Color</span>
                                 <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -75,11 +75,11 @@ const StackbuildControls = (props: any) => {
                         </div>
                     </label>
 
-                    <input className='bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
+                    <input className='bg-gray-400 hover:bg-gray-500 text-white shadow-xl font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
                         type="submit" value="Push" />
                 </form>
                 <br />
-                <button className='bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
+                <button className='bg-gray-400 hover:bg-gray-500 text-white shadow-xl font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
                     onClick={props.popHandler}>Pop</button>
 
             </div>

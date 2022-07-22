@@ -37,7 +37,7 @@ const Stack = () => {
             }
         }
 
-        return <li className={'text-center border-solid hover:border-dashed border-2 border-gray-800 h-10 w-20 ' + color} key={index}>{stackItem[0]}</li>
+        return <li className={'text-center border-solid hover:border-dashed border-2 border-gray-800 shadow-xl h-10 w-20 ' + color} key={index}>{stackItem[0]}</li>
     });
 
     const stackSizeHandler = (stackSizeSet: number) => {

@@ -57,12 +57,12 @@ const BuildControls = (props: any) => {
             <form onSubmit={() => props.addValueSubmitHandler(parseInt(state.addValue), state.color)}>
                 <label>
                     <span className='text-white font-bold'>Add Value</span> <br />
-                    <input className='bg-gray-200 w-20 mt-2' type="number" value={state.addValue} onChange={(event) => addValueHandler(event)} />
+                    <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={state.addValue} onChange={(event) => addValueHandler(event)} />
                 </label>
 
                 <label className="group mx-5">
                     <div className="dropdown group-hover:text-white inline-block relative">
-                        <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" type='button'>
+                        <button className="bg-gray-300 text-gray-700 shadow-xl font-semibold py-2 px-4 rounded inline-flex items-center" type='button'>
                             <span className="mr-1">Color</span>
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -88,48 +88,38 @@ const BuildControls = (props: any) => {
                     </div>
                 </label>
 
-                <input className='bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
+                <input className='bg-gray-400 hover:bg-gray-500 text-white shadow-xl font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
                     type="submit" value="Push" />
 
             </form>
             <br />
             <br />
 
-            <form onSubmit={() => props.addPosValueSubmitHandler(parseInt(state.addPosValue), parseInt(state.addIndex))}>
-                {/* <div>
-                    <label>
-                        <span className='text-white font-bold'>Add Value</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={state.addPosValue} onChange={(event) => addPosValueHandler(event)} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <span className='text-white font-bold'>Position</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={state.addIndex} onChange={(event) => addIndexHandler(event)} />
-                    </label>
-                </div> */}
+            <form onSubmit={() => props.addPosValueSubmitHandler(parseInt(state.addPosValue), parseInt(state.addIndex), state.color)}>
                 <div className='flex'>
                     <label>
                         <span className='text-white font-bold'>Add Value</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={state.addValue} onChange={(event) => addValueHandler(event)} />
+                        <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={state.addPosValue} onChange={(event) => addPosValueHandler(event)} />
                     </label>
-                    <label>
-                        <span className='text-white font-bold'>Add Value</span> <br />
-                        <input className='bg-gray-200 w-20 mt-2' type="number" value={state.addValue} onChange={(event) => addValueHandler(event)} />
+                    <label className='mx-5'>
+                        <span className='text-white font-bold'>Position</span> <br />
+                        <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={state.addIndex} onChange={(event) => addIndexHandler(event)} />
                     </label>
-                    <input className='bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 border border-gray-500 rounded h-15 w-25'
+                    <input className='bg-gray-400 hover:bg-gray-500 text-white shadow-xl font-bold py-2 px-4 border border-gray-500 rounded mt-5 h-15 w-25'
                         type="submit" value="Insert At Position" />
                 </div>
 
 
             </form>
+            <br />
+            <br />
 
             <form onSubmit={() => props.removeHandler(parseInt(state.removeIndex))}>
                 <label>
-                    Remove Value from Position:
-                    <input type="number" value={state.removeIndex} onChange={(event) => removeIndexHandler(event)} />
+                    <span className='text-white font-bold'>Position</span> <br />
+                    <input className='bg-gray-200 shadow-xl w-20 mt-2' type="number" value={state.removeIndex} onChange={(event) => removeIndexHandler(event)} />
                 </label>
-                <input className='bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 border border-gray-500 rounded h-15 w-20'
+                <input className='bg-gray-400 hover:bg-gray-500 text-white shadow-xl font-bold py-2 px-4 border border-gray-500 rounded mx-5 h-15 w-25'
                     type="submit" value="Remove from Position" />
             </form>
 
